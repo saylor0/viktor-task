@@ -1,0 +1,25 @@
+name: Read File From Another Repo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  read-file:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout this repository
+        uses: actions/checkout@v4
+
+      - name: Checkout another repository
+        uses: actions/checkout@v4
+        with:
+          repository: saylor0/viktor-subtask
+          path: other_repo
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Read file and output
+        run: |
+          echo "Содержимое файла из другого репозитория:"
+          cat viktor-subtask/intro.txt
+
