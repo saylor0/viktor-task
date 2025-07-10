@@ -1,0 +1,16 @@
+name: Simple CI Echo
+
+on:
+  push:
+
+jobs:
+  echo-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Print trigger message
+        run: |
+          echo "Эта джоба тригернулась коммитом $(git rev-parse --short HEAD) в ветке ${GITHUB_REF#refs/heads/}"
